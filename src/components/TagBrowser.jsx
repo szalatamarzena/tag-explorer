@@ -27,6 +27,7 @@ const TagBrowser = () => {
   const { data, isLoading, isFetching, isError } = useQuery({
     queryKey: ['getTags', perPage, page],
     queryFn: async () => {
+      // delay data fetching by 2s so that the loader is visible
       await new Promise(resolve => setTimeout(() => resolve(), 2000));
 
       return fetch(
@@ -99,18 +100,6 @@ const TagBrowser = () => {
     );
   }
 
-  // if (isUpadting) {
-  //   return (
-  //     <Box
-  //       display="flex"
-  //       alignItems="center"
-  //       justifyContent="center"
-  //       sx={{ width: 1, height: 600 }}
-  //     >
-  //       <CircularProgress color="secondary" />
-  //     </Box>
-  //   );
-  // }
   if (isError) {
     return (
       <Alert severity="error">
